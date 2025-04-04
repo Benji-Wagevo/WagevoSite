@@ -1,38 +1,799 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Glass TTY VT220';
+  src: url('./Fonts/Glass TTY VT220.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
+/* --- Global Resets/Defaults --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top right, #7300A6 10%, #000000 40%);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background: radial-gradient(circle at top right, #7300A6 10%, #ffffff 40%);
+  color: #000000;
+}
+
+body.light-mode .icon {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(10%) hue-rotate(200deg);
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.navbar.hidden {
+  opacity: 0;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-logo,
+.nav-search {
+  display: flex;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
+.logo-image {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+}
+
+.nav-links-wrapper {
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 25px;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.nav-links li:first-child {
+  padding-left: 1rem;
+}
+
+.nav-links li:last-child {
+  padding-right: 1rem;
+}
+
+.nav-links li a {
+  color: #c4c4c4;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #fff;
+}
+
+.nav-links li a.active {
+  background: #fff;
+  color: #000000;
+  font-weight: bold;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.nav-search {
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-search:hover {
+  background: #333;
+}
+
+.nav-search .icon {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.search-input {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  width: 0;
+  height: 36px;
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 25px;
+  padding: 0 0.5rem;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+}
+
+body.light-mode .search-input {
+  background: #f0f0f0;
+  color: #000000;
+  border-color: #ccc;
+}
+
+.nav-search.active .search-input {
+  width: 200px;
+  opacity: 1;
+  transform: translateX(-200px);
+}
+
+.nav-search.active .icon {
+  opacity: 0;
+}
+
+/* --- Page Container --- */
+.page {
+  padding: 6rem 2rem 2rem;
+  min-height: 100vh;
+  position: relative;
+  background: transparent;
+}
+
+/* --- Top Section Background --- */
+.hero-section,
+.sub-hero {
+  text-align: center;
+  padding: 4rem 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section h1,
+.hero-section p {
+  color: #ffffff;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sub-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.sub-hero p {
+  color: #b9b9b9;
+  font-size: 1.2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* --- Buttons --- */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn.primary {
+  background: #7300A6;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #fff;
+  color: #7300A6;
+}
+
+.btn.secondary {
+  background: #fff;
+  color: #7300A6;
+}
+
+.btn.secondary:hover {
+  background: #7300A6;
+  color: #fff;
+}
+
+/* --- About Section --- */
+.about-section {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .about-section {
+  background: #ffffff;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #7300A6;
+}
+
+.about-section p {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #c4c4c4;
+}
+
+body.light-mode .about-section p {
+  color: #333333;
+}
+
+.about-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* --- How It Works Preview --- */
+.how-it-works-preview {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .how-it-works-preview {
+  background: #ffffff;
+}
+
+.how-it-works-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #7300A6;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.step {
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.light-mode .step {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.step .icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.step p {
+  font-size: 1.2rem;
+  color: #c4c4c4;
+}
+
+body.light-mode .step p {
+  color: #333333;
+}
+
+/* --- Benefits Section --- */
+.benefits-section {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .benefits-section {
+  background: #ffffff;
+}
+
+.benefits-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #7300A6;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.benefit {
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.light-mode .benefit {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.benefit .icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.benefit h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefit p {
+  color: #c4c4c4;
+  font-size: 0.9rem;
+}
+
+body.light-mode .benefit p {
+  color: #333333;
+}
+
+/* --- Info Section --- */
+.info-section {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .info-section {
+  background: #ffffff;
+}
+
+.info-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.info-section .icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.info-section p {
+  max-width: 800px;
+  margin: 0 auto 1rem;
+  color: #c4c4c4;
+}
+
+body.light-mode .info-section p {
+  color: #333333;
+}
+
+.info-section ul {
+  list-style: none;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-section ul li {
+  color: #c4c4c4;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+body.light-mode .info-section ul li {
+  color: #333333;
+}
+
+.info-section ul li::before {
+  content: "•";
+  color: #7300A6;
+  position: absolute;
+  left: 0;
+}
+
+/* --- Why Love Us / How We Work / How Paid --- */
+.why-love-us,
+.how-we-work,
+.how-paid {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .why-love-us,
+body.light-mode .how-we-work,
+body.light-mode .how-paid {
+  background: #ffffff;
+}
+
+.why-love-us h2,
+.how-we-work h2,
+.how-paid h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #7300A6;
+}
+
+.benefit-grid,
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.benefit-block,
+.step {
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.light-mode .benefit-block,
+body.light-mode .step {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.benefit-block .icon,
+.step .icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: #7300A6;
+}
+
+.benefit-block h3,
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-block p,
+.step ul {
+  color: #c4c4c4;
+  font-size: 0.9rem;
+}
+
+body.light-mode .benefit-block p,
+body.light-mode .step ul {
+  color: #333333;
+}
+
+.step ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.step ul li {
+  margin-bottom: 0.5rem;
+}
+
+.step ul li::before {
+  content: "•";
+  color: #7300A6;
+  position: absolute;
+  left: 0;
+}
+
+/* --- Contact Page --- */
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 4rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .contact-options {
+  background: #ffffff;
+}
+
+.contact-options span {
+  font-size: 1.2rem;
+  color: #c4c4c4;
+}
+
+body.light-mode .contact-options span {
+  color: #333333;
+}
+
+/* --- Call to Action --- */
+.call-to-action {
+  text-align: center;
+  padding: 3rem 0;
+  background: #0a0a0a;
+}
+
+body.light-mode .call-to-action {
+  background: #ffffff;
+}
+
+.call-to-action h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.call-to-action div {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  background: #0a0a0a;
+  border-top: 1px solid #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+body.light-mode .footer {
+  background: #ffffff;
+  border-top-color: #ccc;
+}
+
+.footer .logo-image {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer-text {
+  font-size: 1.2rem;
+  color: #7300A6;
+}
+
+body.light-mode .footer-text {
+  color: #333333;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: #7300A6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #9b5aff;
+}
+
+/* --- Dark/Light Mode Toggle --- */
+.mode-toggle {
+  position: fixed;
+  bottom: 50%;
+  right: 1rem;
+  transform: translateY(50%);
+  background: #2a2a2a;
+  border: 1px solid #666;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+body.light-mode .mode-toggle {
+  background: #f0f0f0;
+  border-color: #ccc;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.mode-toggle:hover {
+  background: #333;
+}
+
+body.light-mode .mode-toggle:hover {
+  background: #ddd;
+}
+
+.mode-toggle span {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+body.light-mode .mode-toggle span {
+  color: #000000;
+}
+
+/* --- Animations --- */
+.slide-in {
+  animation: slideIn 0.7s ease-in-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideIn {
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+/* --- Responsive Tweaks --- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5rem;
+  }
+  .nav-links-wrapper {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .nav-logo,
+  .nav-search {
+    margin: 0.5rem 0;
+  }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .hero-section p {
+    font-size: 1rem;
+  }
+  .steps-container,
+  .benefit-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .about-buttons,
+  .hero-buttons,
+  .call-to-action div {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .btn {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  .step,
+  .benefit,
+  .benefit-block {
+    height: 180px;
+    padding: 1.5rem;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-text {
+    margin-top: 0.5rem;
+  }
+}
+
+/* --- Coming Soon Page Custom Styles --- */
+.coming-soon,
+.coming-soon * {
+  font-family: 'Glass TTY VT220', monospace !important;
+}
+
+/* Style for the coming soon blinking cursor to mimic the macOS terminal cursor */
+.coming-soon .cursor {
+  display: inline-block;
+  width: 0.675em;  /* 10% thinner than 0.75em */
+  height: 1em;    /* Keeps the cursor square */
+  background-color: currentColor;
+  animation: blink 1s step-start infinite;
+  /* Removed transform to align the cursor vertically */
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Note: Ensure that the 'Glass TTY VT220' font is properly loaded in your project, either via @font-face or an appropriate import. */
