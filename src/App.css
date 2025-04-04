@@ -27,7 +27,7 @@ body {
 .coming-soon .cursor {
   display: inline-block;
   width: 0.675em;  /* 10% thinner than 0.75em */
-  height: 1em;    /* Keeps the cursor square */
+  height: 0.8em;    /* Keeps the cursor square */
   background-color: currentColor;
   animation: blink 1s step-start infinite;
 }
