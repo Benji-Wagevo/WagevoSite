@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-function ComingSoonPage() {
+function IndexPage() {
   const fullText =
     "Wagevo makes your earnings available immediately after your shift. Coming soon! We appreciate your patience.";
   const [displayedText, setDisplayedText] = useState("");
@@ -15,20 +15,27 @@ function ComingSoonPage() {
       } else {
         clearInterval(typingInterval);
       }
-    }, 50); // Adjust typing speed as needed
+    }, 50);
 
     return () => clearInterval(typingInterval);
   }, [fullText]);
 
   const containerStyle = {
-    backgroundColor: "#000",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#000",
     width: "100vw",
     height: "100vh",
     padding: "2rem",
     display: "flex",
+    flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
+  };
+
+  const headerStyle = {
+    fontSize: "2rem",
+    fontWeight: "bold",
+    marginBottom: "1rem",
   };
 
   const textStyle = {
@@ -37,7 +44,8 @@ function ComingSoonPage() {
   };
 
   return (
-    <div className="coming-soon" style={containerStyle}>
+    <div className="index-page" style={containerStyle}>
+      <header style={headerStyle}>Wagevo</header>
       <p style={textStyle}>
         {displayedText}
         <span className="cursor"></span>
@@ -47,7 +55,7 @@ function ComingSoonPage() {
 }
 
 function App() {
-  return <ComingSoonPage />;
+  return <IndexPage />;
 }
 
 export default App;
