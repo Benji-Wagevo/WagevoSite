@@ -3,7 +3,7 @@ import "./App.css";
 
 function ComingSoonPage() {
   const fullText =
-    "Wagevo makes your earnings available immediately after your shift. Coming soon...";
+    "Wagevo makes your earnings available immediately after your shift. Coming soon!";
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
