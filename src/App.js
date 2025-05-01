@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import logo from "/Users/benjijackson/Wagevo-Site-Official/WagevoSite/src/Assets/images/logo512.png";
+import logo from "./Assets/images/logo512.png";
 
 function IndexPage() {
   const fullText =
