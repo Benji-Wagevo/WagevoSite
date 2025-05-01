@@ -25,7 +25,7 @@ function IndexPage() {
     color: "#000",
     width: "100vw",
     height: "100vh",
-    padding: "2rem",
+    padding: "0",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -33,15 +33,20 @@ function IndexPage() {
   };
 
   const headerStyle = {
+    width: "100%",
+    backgroundColor: "#ccc",
+    color: "#000",
     fontSize: "2rem",
     fontWeight: "bold",
-    marginBottom: "1rem",
-    backgroundColor: "#e0e0e0",
+    padding: "1rem",
+    textAlign: "center",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   };
 
   const textStyle = {
     fontSize: "clamp(1rem, 2vw, 2rem)",
     whiteSpace: "pre-wrap",
+    padding: "2rem",
   };
 
   return (
