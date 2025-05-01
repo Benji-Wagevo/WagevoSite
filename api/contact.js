@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   try {
     const data = await resend.emails.send({
-      from: 'onboarding@resend.dev', // must be verified in Resend
+      from: 'benji@wagevo.com', // must be verified in Resend
       to: 'benji@wagevo.com',
       subject: 'New Contact Form Submission',
       html: `

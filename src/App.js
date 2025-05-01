@@ -110,15 +110,13 @@ function IndexPage() {
       });
   
       if (res.ok) {
-        alert('Message sent!');
         setShowForm(false);
       } else {
         const data = await res.json();
-        alert(`Error: ${data.error || 'Failed to send message'}`);
+        setShowForm(false);
       }
     } catch (err) {
-      console.error(err);
-      alert('An error occurred while sending the message.');
+      setShowForm(false);
     }
   };  
 
