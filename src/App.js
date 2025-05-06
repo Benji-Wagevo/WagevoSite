@@ -30,6 +30,37 @@ function IndexPage() {
     { id: "contact", title: "Contact" }
   ];
   
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const faqData = [
+    {
+      question: "What is Wagevo?",
+      answer:
+        "Wagevo is an early wage access tool that allows employees to access their earned wages immediately after their shift. No more waiting for payday!",
+    },
+    {
+      question: "How does it work?",
+      answer:
+        "Wagevo integrates directly with your employer’s payroll and time-tracking systems to calculate your earned wages in real time. You can then withdraw those earnings to your bank account or debit card.",
+    },
+    {
+      question: "Is there a cost to use Wagevo?",
+      answer:
+        "For employees, there is a small fee per early withdrawal. For employers, Wagevo is completely free—there are no setup or subscription costs.",
+    },
+    {
+      question: "How much of my pay can I access early?",
+      answer:
+        "You can typically access up to 100% of your earned wages before your scheduled payday. The exact percentage may vary based on your employer’s policy.",
+    },
+    {
+      question: "Will this affect my paycheck?",
+      answer:
+        "Yes, any wages you access early will be deducted from your regular paycheck to ensure everything balances properly.",
+    },
+  ];
+
+
   // References to section elements
   const sectionRefs = useRef(sections.map(() => React.createRef()));
   
@@ -452,7 +483,7 @@ function IndexPage() {
         id="features" 
         style={{...sectionStyle, backgroundColor: "#ffffff"}}
       >
-        <h1>How It Works</h1>
+        <h2 style={{ fontSize: "2.5rem", textAlign: "center", marginBottom: "2rem" }}>How It Works</h2>
         <div
             style={{
               display: "flex",
@@ -510,17 +541,63 @@ function IndexPage() {
         )}
       </section>
       
-      {/* Contact Section */}
+      {/* FAQ Section */}
       <section 
         ref={sectionRefs.current[3]} 
         id="contact" 
         style={{...sectionStyle, backgroundColor: "#f8f8f8"}}
       >
-        <h2>Get in Touch</h2>
-        <p style={{ marginBottom: "2rem" }}>Interested in learning more? Contact us directly.</p>
-        <button style={buttonStyle} onClick={() => setShowForm(true)}>
-          Contact Us
-        </button>
+        <h2 style={{ fontSize: "2.5rem", textAlign: "center", marginBottom: "2rem" }}>Frequently Asked Questions</h2>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        {faqData.map((item, index) => {
+  const isActive = activeIndex === index;
+
+  return (
+    <div
+      key={index}
+      style={{
+        border: "1px solid #ddd",
+        borderRadius: "8px",
+        overflow: "hidden",
+        cursor: "pointer",
+        width: "100%", // ✅ Prevent width change
+        boxSizing: "border-box", // ✅ Include padding in width
+        transition: "all 0.3s ease",
+      }}
+      onClick={() => setActiveIndex(isActive ? null : index)}
+    >
+      {/* Question */}
+      <div
+        style={{
+          padding: "1rem",
+          backgroundColor: "#f7f7f7",
+          fontWeight: "bold",
+          wordWrap: "break-word",
+        }}
+      >
+        {item.question}
+      </div>
+
+      {/* Answer */}
+      <div
+        style={{
+          padding: isActive ? "1rem" : "0",
+          backgroundColor: "#fff",
+          maxHeight: isActive ? "1000px" : "0px",
+          overflow: "hidden",
+          transition: "all 0.3s ease",
+          opacity: isActive ? 1 : 0,
+          wordWrap: "break-word", // ✅ Ensure long text wraps
+        }}
+      >
+        {item.answer}
+      </div>
+    </div>
+  );
+})}
+
+        </div>
         
         {/* Up arrow - only show if not on the first section */}
         {activeSection > 0 && (
