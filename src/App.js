@@ -134,9 +134,9 @@ function IndexPage() {
     overflowY: "auto",
     scrollBehavior: "smooth",
     scrollSnapType: "y mandatory",
-    position: "relative"
+    position: "relative",
   };
-
+  
   const headerStyle = {
     width: "100%",
     backgroundColor: "#f0f0f0",
@@ -149,55 +149,37 @@ function IndexPage() {
     justifyContent: "space-between",
     position: "sticky",
     top: 0,
-    zIndex: 100
+    zIndex: 100,
+    flexWrap: "wrap", // Allow wrapping for smaller screens
   };
-
+  
   const logoStyle = {
-    height: "4rem",
+    height: "3rem", // Adjusted for smaller screens
     width: "auto",
   };
-
+  
   const buttonStyle = {
     backgroundColor: "#7300a6",
     color: "#fff",
     border: "none",
     padding: "0.5rem 1rem",
-    fontSize: "1.5rem",
+    fontSize: "1rem", // Adjusted for smaller screens
     borderRadius: "5px",
     cursor: "pointer",
+    marginTop: "0.5rem", // Add margin for spacing on mobile
   };
-
+  
   const sectionStyle = {
     minHeight: "100vh",
     width: "100%",
-    padding: "5rem 2rem",
+    padding: "2rem 1rem", // Adjust padding for smaller screens
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     scrollSnapAlign: "start",
-    position: "relative"
+    position: "relative",
   };
-  
-  const dotNavigationStyle = {
-    position: "fixed",
-    right: "2rem",
-    top: "50%",
-    transform: "translateY(-50%)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-    zIndex: 100
-  };
-  
-  const dotStyle = (isActive) => ({
-    width: isActive ? "14px" : "10px",
-    height: isActive ? "14px" : "10px",
-    borderRadius: "50%",
-    backgroundColor: isActive ? "#7300a6" : "#ccc",
-    transition: "all 0.3s ease",
-    cursor: "pointer"
-  });
   
   const formStyle = {
     display: showForm ? "block" : "none",
@@ -209,20 +191,71 @@ function IndexPage() {
     padding: "2rem",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
     zIndex: 1000,
-    width: "400px",
-    maxWidth: "90%",
+    width: "90%", // Use a percentage width for smaller screens
+    maxWidth: "400px",
   };
-
+  
   const formHeaderStyle = {
     textAlign: "center",
     marginBottom: "1.5rem",
+    fontSize: "1.5rem", // Adjust font size for smaller screens
   };
-
+  
   const formButtonContainerStyle = {
     display: "flex",
     justifyContent: "center",
     marginTop: "1rem",
   };
+  
+  const dotNavigationStyle = {
+    position: "fixed",
+    right: "1rem", // Adjust position for smaller screens
+    top: "50%",
+    transform: "translateY(-50%)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem", // Reduce gap for smaller screens
+    zIndex: 100,
+  };
+  
+  const dotStyle = (isActive) => ({
+    width: isActive ? "12px" : "8px", // Adjust size for smaller screens
+    height: isActive ? "12px" : "8px",
+    borderRadius: "50%",
+    backgroundColor: isActive ? "#7300a6" : "#ccc",
+    transition: "all 0.3s ease",
+    cursor: "pointer",
+  });
+  
+  const mediaQueryStyles = `
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.5rem; /* Adjust font size for headings */
+      }
+  
+      .index-page {
+        padding: 1rem; /* Add padding for smaller screens */
+      }
+  
+      header {
+        flex-direction: column; /* Stack logo and button vertically */
+        align-items: center;
+      }
+  
+      button {
+        width: 100%; /* Make buttons full-width */
+        margin-top: 1rem; /* Add spacing between buttons */
+      }
+  
+      section {
+        padding: 1rem; /* Reduce padding for sections */
+      }
+  
+      form {
+        width: 90%; /* Ensure form fits on smaller screens */
+      }
+    }
+  `;
 
   const overlayStyle = {
     display: showForm ? "block" : "none",
