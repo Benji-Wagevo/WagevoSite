@@ -37,3 +37,195 @@ body {
 }
 
 /* End of minimal CSS for Coming Soon page */
+
+/* Features Section Styles */
+.features-section {
+  padding: 5rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.features-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.features-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.feature-column {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.feature-icon {
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+.feature-heading {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.feature-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Features Section Mobile Styles */
+@media (max-width: 768px) {
+  #features {
+    padding-top: 0 !important;
+    min-height: 100vh !important;
+    padding-bottom: 2rem !important;
+    scroll-snap-align: start !important;
+    position: relative !important;
+    margin-top: 6rem !important;
+  }
+
+  #features > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    position: relative !important;
+    top: 2rem !important;
+  }
+
+  #features h2 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
+    position: relative !important;
+    z-index: 1 !important;
+    padding-top: 2rem !important;
+  }
+
+  #features > div > div {
+    padding: 0.5rem !important;
+    gap: 1rem !important;
+  }
+
+  #features > div > div > div {
+    flex: 1 1 100% !important;
+  }
+
+  #features img {
+    height: 60px !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  #features h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  #features p {
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+  }
+}
+
+/* About Section Mobile Styles */
+@media (max-width: 768px) {
+  #about {
+    padding-top: 6rem !important;
+    min-height: 100vh !important;
+    padding-bottom: 2rem !important;
+    scroll-snap-align: start !important;
+    position: relative !important;
+    margin-top: 0 !important;
+  }
+
+  #about > div {
+    padding-top: 2rem !important;
+    gap: 2rem !important;
+  }
+
+  #about > div > div {
+    flex: 1 1 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  #about img {
+    height: 60px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #about h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  #about p {
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+  }
+}
+
+/* Home Section Mobile Styles */
+@media (max-width: 768px) {
+  #home {
+    padding-top: 6rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: calc(100vh - 6rem) !important;
+  }
+
+  #home > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+  }
+
+  #home > div > div:first-child {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #home > div > div:first-child h2 {
+    font-size: 2.5rem !important;
+  }
+
+  #home > div > div:nth-child(2) {
+    width: 80% !important;
+    height: 2px !important;
+    margin: 0 auto !important;
+  }
+
+  #home > div > div:last-child {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #home > div > div:last-child h2 {
+    font-size: 2.5rem !important;
+  }
+}
