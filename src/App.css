@@ -229,3 +229,11 @@ body {
     font-size: 2.5rem !important;
   }
 }
+
+/* Hide navigation arrows on mobile */
+@media (max-width: 768px) {
+  button[aria-label="Go to next section"],
+  button[aria-label="Go to previous section"] {
+    display: none !important;
+  }
+}
