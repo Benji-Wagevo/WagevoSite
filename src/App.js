@@ -347,10 +347,9 @@ function IndexPage() {
   const mobileNavStyle = {
     display: "flex",
     gap: "2rem",
-    justifyContent: "flex-start",
-    flex: 1,
-    margin: "0 1rem",
-    marginLeft: "16rem",
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
     "@media (max-width: 768px)": {
       display: "none !important"
     }
