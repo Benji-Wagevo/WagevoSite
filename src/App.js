@@ -9,11 +9,6 @@ import phoneIcon from "./Assets/images/phone.png";
 import clockIcon from "./Assets/images/clock.png";
 
 function IndexPage() {
-  // State for the typing effect
-  const fullText =
-    "Wagevo makes your earnings available immediately after your shift. Coming soon! We appreciate your patience.";
-  const [displayedText, setDisplayedText] = useState("");
-  
   // State for contact form
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -62,21 +57,6 @@ function IndexPage() {
 
   // References to section elements
   const sectionRefs = useRef(sections.map(() => React.createRef()));
-  
-  // Typing effect
-  useEffect(() => {
-    let currentIndex = 1;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.substring(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 50);
-
-    return () => clearInterval(typingInterval);
-  }, [fullText]);
   
   // Intersection observer to detect current section
   useEffect(() => {

@@ -1,10 +1,3 @@
-@font-face {
-  font-family: 'Glass TTY VT220';
-  src: url('./Fonts/Glass TTY VT220.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* Minimal global resets */
 * {
   margin: 0;
@@ -16,27 +9,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* --- Coming Soon Page Custom Styles --- */
-.coming-soon,
-.coming-soon * {
-  font-family: 'Glass TTY VT220', monospace !important;
-}
-
-/* Blinking cursor style */
-.coming-soon .cursor {
-  display: inline-block;
-  width: 0.675em;  /* 10% thinner than 0.75em */
-  height: 0.8em;    /* Keeps the cursor square */
-  background-color: currentColor;
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* End of minimal CSS for Coming Soon page */
 
 /* Features Section Styles */
 .features-section {
