@@ -535,7 +535,7 @@ function IndexPage() {
               fontWeight: "bold",
               lineHeight: "1.2"
             }}>
-              Everyday should be payday
+              Every day should be payday
             </h2>
           </div>
         </div>
